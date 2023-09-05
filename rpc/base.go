@@ -254,6 +254,15 @@ func (c *baseClient) GetTransactionReceipt(ctx context.Context, hash types.Hash)
 	return &res, nil
 }
 
+// GetBlockReceipts implements the RPC interface.
+func (c *baseClient) GetBlockReceipts(ctx context.Context, number types.BlockNumber) (*[]types.TransactionReceipt, error) {
+	var res []types.TransactionReceipt
+	if err := c.transport.Call(ctx, &res, "eth_getBlockReceipts", number); err != nil {
+		return nil, err
+	}
+	return &res, nil
+}
+
 // GetLogs implements the RPC interface.
 func (c *baseClient) GetLogs(ctx context.Context, query types.FilterLogsQuery) ([]types.Log, error) {
 	var res []types.Log

@@ -148,6 +148,11 @@ type RPC interface {
 	// It returns the receipt of a transaction by transaction hash.
 	GetTransactionReceipt(ctx context.Context, hash types.Hash) (*types.TransactionReceipt, error)
 
+	// GetBlockReceipts performs eth_getBlockReceipts RPC call.
+	//
+	// It returns transaction receipts by block number.
+	GetBlockReceipts(ctx context.Context, number types.BlockNumber) (*[]types.TransactionReceipt, error)
+
 	// TODO: eth_getUncleByBlockHashAndIndex
 	// TODO: eth_getUncleByBlockNumberAndIndex
 	// TODO: eth_getCompilers
